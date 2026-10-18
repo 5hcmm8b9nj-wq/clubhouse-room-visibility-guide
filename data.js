@@ -75,9 +75,9 @@ const SECTIONS = [
     intro: "You were listening to a live room, got dropped, and can't get back in, even after restarting your phone and the app. These are technical fixes. Choose iPhone or Android to see only the steps for your phone.",
     devFilter: true,
     items: [
-      { dev: "both", kind: "why", t: "Were you listening in a web browser?",
-        d: "Hosts and moderators can turn off web listening. When they do, everyone listening in a browser is removed from the room. If that happened, open the room in the Clubhouse app instead.",
-        src: ["whatsnew"], when: "May 29, 2026 release" },
+      { dev: "both", kind: "why", t: "First: were you in the Clubhouse app or a web browser?",
+        d: "You can listen on your phone in two ways. In the Clubhouse app, there is no web address at the top of the screen. In a web browser, such as Safari on iPhone or Chrome on Android, you see a web address at the top, and you can listen but you can't chat, react or speak. If you were using the Clubhouse app, skip this card and go to the next one. If you were in a web browser, the host may have turned off web listening, which removes everyone listening in a browser. Open the room in the Clubhouse app instead.",
+        src: ["whatsnew"], when: "Web listening: April 9 and May 29, 2026 releases" },
       { dev: "both", kind: "step", t: "Check that the room is still live",
         d: "A moderator can end a room at any time. Open the host's profile or the House page to see if the room is still running. You can also tap Search, then the globe icon, to see live rooms you can join.",
         src: ["modBlog", "whatsnew", "hallway"], when: "House page: February 12, 2025 release" },
