@@ -162,3 +162,18 @@ html[data-mode="night"] .btn-primary{color:#05201E}
   .view{display:none!important} .view[data-view="check"]{display:block!important}
   .chk{break-inside:avoid;border:1px solid #999}
 }
+
+.dev{display:inline-block;margin:0 0 6px 6px;font-size:.74rem;font-weight:700;padding:2px 9px;border-radius:999px;vertical-align:top}
+.dev-iphone{background:#1E3A8A;color:#fff}
+.dev-android{background:#166534;color:#fff}
+.dev-both{background:var(--note-bg);color:var(--ink);border:1px solid var(--line)}
+html[data-mode="night"] .dev-iphone{background:#93C5FD;color:#0B1418}
+html[data-mode="night"] .dev-android{background:#86EFAC;color:#0B1418}
+.devseg{margin-top:16px;padding:14px;border-radius:16px;background:var(--surface);border:2px solid var(--line)}
+.devseg .lbl{margin:0 0 8px;font-weight:700}
+.devbtns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.devbtns button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;white-space:nowrap;min-height:64px;border-radius:12px;border:2px solid var(--line);background:var(--bg);font-weight:700;cursor:pointer;padding:6px}
+.devbtns button[data-dev="iphone"][aria-pressed="true"]{background:#1E3A8A;border-color:#1E3A8A;color:#fff}
+.devbtns button[data-dev="android"][aria-pressed="true"]{background:#166534;border-color:#166534;color:#fff}
+.devbtns button[data-dev="all"][aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.devbtns button span{font-size:1.3rem;line-height:1}

@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -100,6 +100,14 @@
     <h2 class="h2" id="secTitle"></h2>
     <p class="muted" id="secIntro"></p>
     <button class="btn btn-primary wide" id="secPlay">▶ Read this section out loud</button>
+    <div class="devseg" id="devSeg" role="group" aria-label="Choose your phone" hidden>
+      <p class="lbl">Which phone do you have?</p>
+      <div class="devbtns">
+        <button data-dev="iphone"><span>📱</span>iPhone</button>
+        <button data-dev="android"><span>🤖</span>Android</button>
+        <button data-dev="all"><span>📋</span>Show all</button>
+      </div>
+    </div>
     <div id="secItems" class="cards"></div>
     <div class="pager">
       <button class="btn" id="secPrev">⬅ Previous</button>
@@ -162,7 +170,7 @@
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<script src="data.js?v=2"></script>
-<script src="app.js?v=3"></script>
+<script src="data.js?v=3"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

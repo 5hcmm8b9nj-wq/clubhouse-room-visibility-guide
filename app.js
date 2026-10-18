@@ -36,10 +36,14 @@
       it.src.map(k => `<a href="${S[k].url}" target="_blank" rel="noopener">${esc(S[k].name)}</a>`).join(" · ") +
       (it.when ? `<span class="when">${esc(it.when)}</span>` : "") + `</div>`;
   }
+  const DEV = { iphone: "📱 iPhone", android: "🤖 Android", both: "📱🤖 iPhone and Android" };
+  const devBadge = d => `<span class="dev dev-${d}">${DEV[d]}</span>`;
+  let devF = LS.get("dev", "all");
+  const devOK = it => !it.dev || devF === "all" || it.dev === "both" || it.dev === devF;
   const kindName = { step: "Try this", why: "Reason", warn: "Be careful", note: "Good to know" };
   function cardHtml(sec, it, i) {
     return `<article class="card ${it.kind}${it.unofficial ? " unoff" : ""}" id="card-${sec.id}-${i}">
-      <span class="tag">${it.unofficial ? "News report · not from Clubhouse" : kindName[it.kind]}</span>
+      <span class="tag">${it.unofficial ? "News report · not from Clubhouse" : kindName[it.kind]}</span>${it.dev ? devBadge(it.dev) : ""}
       <div class="card-top"><h3>${esc(it.t)}</h3>
       <button class="card-play" data-play="${sec.id}:${i}" aria-label="Read this card out loud">▶</button></div>
       <p>${esc(it.d)}</p>${srcHtml(it)}</article>`;
@@ -64,7 +68,10 @@
     $("#secEyebrow").textContent = `${s.icon} Section ${n + 1} of ${SECTIONS.length}`;
     $("#secTitle").textContent = s.title;
     $("#secIntro").textContent = s.intro;
-    $("#secItems").innerHTML = s.items.map((it, i) => cardHtml(s, it, i)).join("");
+    const df = $("#devSeg");
+    df.hidden = !s.devFilter;
+    if (s.devFilter) $$("button", df).forEach(b => b.setAttribute("aria-pressed", b.dataset.dev === devF));
+    $("#secItems").innerHTML = s.items.map((it, i) => (!s.devFilter || devOK(it)) ? cardHtml(s, it, i) : "").join("");
     $("#secPrev").disabled = n === 0; $("#secNext").disabled = n === SECTIONS.length - 1;
     $("#secPrev").style.visibility = n === 0 ? "hidden" : "visible";
     $("#secNext").textContent = n === SECTIONS.length - 1 ? "Next ➡" : `${SECTIONS[n + 1].title} ➡`;
@@ -79,7 +86,14 @@
     const g = e.target.closest("[data-go]");
     if (g) { go(g.dataset.go); return; }
     const p = e.target.closest("[data-play]");
-    if (p) { const [sid, i] = p.dataset.play.split(":"); playQueue(sectionQueue(sid), +i, false, true); }
+    if (p) { const [sid, i] = p.dataset.play.split(":"); const q = sectionQueue(sid); const at = q.findIndex(x => x.el === `card-${sid}-${i}`); playQueue(q, Math.max(at, 0), false, true); }
+  });
+  $("#devSeg").addEventListener("click", e => {
+    const b = e.target.closest("[data-dev]"); if (!b) return;
+    devF = b.dataset.dev; LS.set("dev", devF);
+    if (state !== "idle") $("#pStop").click();
+    renderSection(curSec);
+    toast(devF === "all" ? "Showing all steps" : `Showing ${DEV[devF].slice(3)} steps`);
   });
   $("#secPrev").onclick = () => { const n = SECTIONS.findIndex(s => s.id === curSec); if (n > 0) show("section", SECTIONS[n - 1].id); };
   $("#secNext").onclick = () => { const n = SECTIONS.findIndex(s => s.id === curSec); if (n < SECTIONS.length - 1) show("section", SECTIONS[n + 1].id); else show("check"); };
@@ -147,7 +161,7 @@
   function sectionQueue(sid) {
     const s = secById(sid);
     return [{ label: s.title, text: `${s.title}. ${s.intro}`, view: ["section", s.id], el: null }]
-      .concat(s.items.map((it, i) => ({ label: `${s.title} · ${it.t}`, text: `${it.t}. ${it.d}`, view: ["section", s.id], el: `card-${s.id}-${i}` })));
+      .concat(s.items.map((it, i) => ({ it, i })).filter(x => !s.devFilter || devOK(x.it)).map(({ it, i }) => ({ label: `${s.title} · ${it.t}`, text: `${it.dev && it.dev !== "both" ? (it.dev === "iphone" ? "On iPhone. " : "On Android. ") : ""}${it.t}. ${it.d}`, view: ["section", s.id], el: `card-${s.id}-${i}` })));
   }
   function fullQueue() {
     let q = [{ label: "Welcome", text: "Can't find a Clubhouse room? This guide explains why a room may be missing from your Hallway, and how to get back in through the host's profile. Use Rewind and Forward to move between cards.", view: ["home"], el: null }];
@@ -293,7 +307,9 @@
   /* ---------- start ---------- */
   function fromHash() {
     const h = location.hash.slice(1);
-    if (secById(h)) show("section", h);
+    const m = h.match(/^kicked-(iphone|android)$/);
+    if (m) { devF = m[1]; LS.set("dev", devF); show("section", "kicked"); }
+    else if (secById(h)) show("section", h);
     else if (h === "check" || h === "sources") show(h);
     else show("home");
   }
