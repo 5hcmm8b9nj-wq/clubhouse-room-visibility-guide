@@ -1,0 +1,295 @@
+/* Content for the Clubhouse Room Visibility Guide.
+   Every item lists the sources it came from. "kind" sets the fixed color role:
+   step = teal (things to try), why = coral (reasons a room vanishes),
+   warn = amber (warnings), note = slate (background facts). */
+
+const S = {
+  hallway: { name: "Clubhouse: Live Rooms in your Hallway", url: "https://support.clubhouse.com/hc/en-us/articles/20084400322707-Live-Rooms-in-your-Hallway" },
+  houseRooms: { name: "Clubhouse: House Rooms", url: "https://support.clubhouse.com/hc/en-us/articles/20203776970003-House-Rooms" },
+  blocking: { name: "Clubhouse: Blocking", url: "https://support.clubhouse.com/hc/en-us/articles/20198452563987-Blocking" },
+  housePrivacy: { name: "Clubhouse: House Privacy", url: "https://support.clubhouse.com/hc/en-us/articles/20205068682259-House-Privacy" },
+  managing: { name: "Clubhouse: Managing Houses", url: "https://support.clubhouse.com/hc/en-us/articles/20199097681043-Managing-Houses" },
+  houseSettings: { name: "Clubhouse: House Settings", url: "https://support.clubhouse.com/hc/en-us/articles/20200517218579-House-Settings" },
+  liveRooms: { name: "Clubhouse: What are Live Rooms?", url: "https://support.clubhouse.com/hc/en-us/articles/20084265581587-What-are-Live-Rooms" },
+  search: { name: "Clubhouse: Search", url: "https://support.clubhouse.com/hc/en-us/articles/20081089481619-Search" },
+  notified: { name: "Clubhouse: When do I get notified about people?", url: "https://support.clubhouse.com/hc/en-us/articles/360062778193-When-do-I-get-notified-about-people" },
+  personal: { name: "Clubhouse: Personalization on Clubhouse", url: "https://support.clubhouse.com/hc/en-us/articles/13625353050643-Personalization-on-Clubhouse" },
+  privateProf: { name: "Clubhouse: Private Profiles", url: "https://support.clubhouse.com/hc/en-us/articles/5140736866579-Private-Profiles" },
+  teen: { name: "Clubhouse: Teen Settings", url: "https://support.clubhouse.com/hc/en-us/articles/7601390241043-Teen-Settings" },
+  safety: { name: "Clubhouse: Safety & Moderation on Clubhouse", url: "https://support.clubhouse.com/hc/en-us/articles/20161032231955-Safety-Moderation-on-Clubhouse" },
+  appeals: { name: "Clubhouse: Trust & Safety Appeals", url: "https://support.clubhouse.com/hc/en-us/articles/4405269210387-Trust-Safety-Appeals" },
+  request: { name: "Clubhouse: Submit a request", url: "https://support.clubhouse.com/hc/en-us/requests/new" },
+  guidelines: { name: "Clubhouse Community Guidelines", url: "https://joinclubhouse.notion.site/Community-Guidelines-461a6860abda41649e17c34dc1dd4b5f" },
+  modBlog: { name: "Clubhouse Blog: On Community Moderation", url: "https://joinclubhouse.ghost.io/on-community-moderation/" },
+  whatsnew: { name: "Clubhouse: What's New (release notes)", url: "https://www.clubhouse.com/whatsnew" },
+  knowledge: { name: "Clubhouse Knowledge Center", url: "https://support.clubhouse.com/hc/en-us" },
+  play: { name: "Clubhouse on Google Play", url: "https://play.google.com/store/apps/details?id=com.clubhouse.app&hl=en_US" },
+  cr: { name: "Consumer Reports: Clubhouse privacy and security", url: "https://www.consumerreports.org/electronics/social-media/clubhouse-social-media-app-digital-privacy-security-a7893709283/" },
+  wired: { name: "Wired: Inside Clubhouse", url: "https://www.wired.com/story/inside-clubhouse-audio-app-paul-davison-rohan-seth/" },
+  itg: { name: "iTechGuides: How to use the Clubhouse app", url: "https://www.itechguides.com/how-to-use-clubhouse-app-a-complete-guide-for-everyone/" },
+  fossbytes: { name: "Fossbytes: Clubhouse tips and tricks", url: "https://fossbytes.com/clubhouse-tips-and-tricks/" },
+  mc: { name: "Moneycontrol: Clubhouse NSFW room filter", url: "https://www.moneycontrol.com/news/business/clubhouse-to-soon-allow-users-to-filter-out-explicit-rooms-7797051.html" }
+};
+
+const SECTIONS = [
+  {
+    id: "quick", icon: "⚡", color: "#0F766E",
+    title: "Quick Fix",
+    sub: "6 things to try first",
+    intro: "If a room is missing right now, try these six things in order.",
+    items: [
+      { kind: "step", t: "Ask the host for the room link",
+        d: "Ask the host or a co-host to send you the room link. Each room now has one link that works for the scheduled room, the live room and the replay.",
+        src: ["whatsnew"], when: "March 25, 2026 release" },
+      { kind: "step", t: "Open the host's profile",
+        d: "Search for the host, open their profile, and look at the Houses they belong to. The Find the Host section walks through this step by step.",
+        src: ["search", "managing"] },
+      { kind: "step", t: "Use the globe in Search",
+        d: "Tap Search, then tap the globe icon beside the search bar. It shows the live rooms you are able to join.",
+        src: ["hallway"] },
+      { kind: "step", t: "Look at the bottom of your Hallway",
+        d: "Scroll to the very bottom of your Hallway. If you see a notice about hidden rooms, someone you blocked is speaking. Tap the notice to show the room.",
+        src: ["cr", "guidelines"] },
+      { kind: "step", t: "Open the House page",
+        d: "Open the House the room belongs to. The House page shows its live rooms and upcoming rooms.",
+        src: ["whatsnew"], when: "February 12, 2025 release" },
+      { kind: "step", t: "Update and restart the app",
+        d: "Update Clubhouse from the App Store on iPhone or Google Play on Android. Then close the app fully and open it again.",
+        src: [] }
+    ]
+  },
+  {
+    id: "why", icon: "❓", color: "#C2410C",
+    title: "Why Rooms Disappear",
+    sub: "10 common reasons",
+    intro: "These are the ten most common reasons a room does not show up in your Hallway.",
+    items: [
+      { kind: "why", t: "1. The room's privacy setting leaves you out",
+        d: "Friends Only rooms can be seen only by the host's friends. Friends of Friends rooms can be seen by the host's friends and the people they invite. House rooms are for members of that House. On Clubhouse, friends means you follow each other. If the host does not follow you back, you will not see their Friends Only rooms.",
+        src: ["hallway", "whatsnew"], when: "Friends definition: May 11, 2026 release" },
+      { kind: "why", t: "2. You are not a member of the House",
+        d: "Clubhouse's House Rooms page says only House members can enter rooms the House creates. Another Clubhouse page says rooms in a House that is open to everyone can be seen by everyone. The two pages do not agree, so the safest step is to join the House.",
+        src: ["houseRooms", "hallway"] },
+      { kind: "why", t: "3. Blocking",
+        d: "If you blocked someone who is speaking, the room is hidden from you. If the host or a moderator blocked you, you cannot see or join their rooms. The Blocking section explains each case.",
+        src: ["blocking", "guidelines"] },
+      { kind: "why", t: "4. A moderator removed you from the room",
+        d: "When a moderator removes someone from a room, that person can no longer see the room or get back in.",
+        src: ["guidelines"] },
+      { kind: "why", t: "5. The room ended or was closed",
+        d: "Any moderator can end a room at any time. Moderators can check the Moderator Action History to see who closed a room. If the host turned on Replays, the same room link may open the replay.",
+        src: ["modBlog", "whatsnew"], when: "Action History: February 3 and May 11, 2026 releases" },
+      { kind: "why", t: "6. You hid the room yourself",
+        d: "You can hide a room by pressing and holding it in the Hallway and tapping Hide. On older versions of the app, you swiped the room to the right. Tap Undo straight away if you did it by mistake. Otherwise, go back in through the host's profile, the House page or the room link.",
+        src: ["itg", "fossbytes"] },
+      { kind: "why", t: "7. The Hallway changed how it sorts rooms",
+        d: "Clubhouse has tested one combined Hallway. Rooms from your friends and Houses show at the top, and rooms from outside your network show below them. Some iPhone users also see category tabs at the top, including a Faith tab. Clubhouse also chooses which notifications to send you.",
+        src: ["whatsnew", "personal"], when: "February 7, 2025 and February 3, 2026 releases" },
+      { kind: "why", t: "8. A content filter is hiding it",
+        d: "Teen accounts are set to keep adult or mature rooms out of their Hallway. Clubhouse also added a setting that keeps rooms marked NSFW, meaning not safe for work, out of the Hallway.",
+        src: ["teen", "mc"] },
+      { kind: "why", t: "9. Your account or the House is suspended",
+        d: "If your account or a House is suspended, you will find the details, including how long it lasts, in your Activity Center in the app.",
+        src: ["appeals"] },
+      { kind: "why", t: "10. A technical problem",
+        d: "An old version of the app, a weak connection or an expired login can stop the Hallway from loading. Update the app, switch between Wi-Fi and mobile data, and sign out and back in before you decide the room is gone.",
+        src: [] }
+    ]
+  },
+  {
+    id: "mod", icon: "🛡️", color: "#6D28D9",
+    title: "Moderation",
+    sub: "What moderators and Clubhouse can do",
+    intro: "Moderators, House leaders and Clubhouse's Trust and Safety team can each affect whether you see a room.",
+    items: [
+      { kind: "note", t: "Room moderators can remove people",
+        d: "Moderators can mute speakers, move them to the audience, or remove them from the room. A person who is removed can no longer see the room or get back in.",
+        src: ["guidelines"] },
+      { kind: "note", t: "Room moderators can end the room",
+        d: "Any moderator can end a room at any time.",
+        src: ["modBlog"] },
+      { kind: "note", t: "Moderators choose who can speak and chat",
+        d: "Moderators can choose who can raise a hand: no one, everyone, or friends of the speakers. In House rooms, they can choose who can post in the chat: everyone, House members only, or trusted House members.",
+        src: ["whatsnew"], when: "October 21, 2024 and June 29, 2026 releases" },
+      { kind: "note", t: "Moderators can turn off web listening",
+        d: "If web listening is turned off, anyone listening through a web browser is removed from the room.",
+        src: ["whatsnew"], when: "May 29, 2026 release" },
+      { kind: "warn", t: "House leaders can remove or ban members",
+        d: "House Founders and Admins can remove members. They can also ban members. A ban is permanent and cannot be undone.",
+        src: ["managing", "safety"] },
+      { kind: "warn", t: "Clubhouse can warn, remove content or suspend",
+        d: "Depending on how serious a violation is, Clubhouse may give a warning, remove the content, or remove the account. Repeat violations lead to longer suspensions. A final strike warning comes before a permanent suspension. For the most serious violations, Clubhouse looks for problems itself and can act against both the users and the House.",
+        src: ["guidelines", "appeals", "safety"] },
+      { kind: "note", t: "Reported, not official: hidden controversial rooms",
+        d: "A news report said that early on, Clubhouse hid some controversial rooms from the Hallway. Clubhouse's help pages do not describe this as current policy.",
+        src: ["wired"], unofficial: true },
+      { kind: "step", t: "How to appeal a suspension",
+        d: "Open the Clubhouse request form and choose I want to appeal a suspension. Appeals also cover House suspensions and blurred images. Clubhouse replies only to the person who was suspended.",
+        src: ["appeals", "request"] }
+    ]
+  },
+  {
+    id: "block", icon: "🚫", color: "#B91C1C",
+    title: "Blocking",
+    sub: "How your block list hides rooms",
+    intro: "Blocking works in both directions. It matters who blocked whom.",
+    items: [
+      { kind: "why", t: "If you blocked someone who is speaking",
+        d: "The room is hidden from your Hallway. A notice at the bottom of the Hallway tells you a hidden room exists. Tap it to show the room.",
+        src: ["cr", "guidelines"] },
+      { kind: "note", t: "Warnings in House conversations",
+        d: "Before you enter a House conversation, you will see a warning if someone you blocked is already in it. In a room someone else created, you will not be told when a person you blocked joins.",
+        src: ["blocking"] },
+      { kind: "warn", t: "Blocking also removes the friendship",
+        d: "When you block someone, they are no longer your friend. That can change which Friends Only rooms you see from each other.",
+        src: ["blocking"] },
+      { kind: "why", t: "If the host or a moderator blocked you",
+        d: "You cannot see or join rooms they create or moderate. The Community Guidelines say the same applies when they are a speaker. Other people cannot invite you into rooms that person created. Clubhouse does not tell you who blocked you.",
+        src: ["blocking", "guidelines"] },
+      { kind: "note", t: "Blocking inside Houses",
+        d: "House members cannot invite people they blocked, or people who blocked them. People blocked by a House Admin cannot be invited at all. The person inviting them sees the message: You can't add this user to this house right now. Content from blocked users is not hidden inside a House.",
+        src: ["housePrivacy"] },
+      { kind: "step", t: "Check your block list",
+        d: "Tap your profile picture, then the gear icon for settings, then Block List. To unblock someone, open their profile, tap the three dots, then Unblock. Think about why you blocked them first. Your safety comes first. The hidden room notice lets you see one room without unblocking anyone.",
+        src: ["blocking"] }
+    ]
+  },
+  {
+    id: "house", icon: "🏠", color: "#1D4ED8",
+    title: "House Privacy",
+    sub: "When a House changes its settings",
+    intro: "A House's settings decide who can join it and who can see its rooms.",
+    items: [
+      { kind: "note", t: "The three House settings",
+        d: "Open to all: anyone can join straight away, and the member list is always public. By approval: you join a waitlist and wait to be approved, and you may need to answer a question. Invite only: you can join only if someone invites you. There is no waitlist.",
+        src: ["managing"] },
+      { kind: "warn", t: "When a House hides its member list",
+        d: "Only members can see the member list and House activity. The House no longer shows on members' profiles. The House can no longer host public rooms, so people who are not members cannot see its rooms. The House still shows in Search.",
+        src: ["managing"] },
+      { kind: "note", t: "Who can start rooms in a House",
+        d: "House Leaders can start rooms and schedule events. Ordinary members can start rooms or invite people only if the House allows it.",
+        src: ["managing"] },
+      { kind: "note", t: "House chats moved to Messages",
+        d: "House chats are now in the Messages tab. In Houses with more than 100 members, only Admins and Leaders can post by default.",
+        src: ["whatsnew"], when: "January 28, 2025 release" },
+      { kind: "warn", t: "Private profiles hide Houses",
+        d: "When a profile is private, only friends can see that person's friend list and Houses. If the host's profile is private, you cannot find their Houses from their profile unless you are friends. Teen accounts start with a private profile.",
+        src: ["privateProf", "teen"] }
+    ]
+  },
+  {
+    id: "find", icon: "🔎", color: "#047857",
+    title: "Find the Host",
+    sub: "10 steps to find live rooms",
+    intro: "Work through these ten steps in order until you find the room.",
+    items: [
+      { kind: "step", t: "Step 1. Find the host",
+        d: "Tap Search, the magnifying glass. Type the host's name or username, and choose the People tab.",
+        src: ["search"] },
+      { kind: "step", t: "Step 2. Become friends",
+        d: "Follow the host. Friends Only rooms show up only if the host follows you back. If the host's profile is private, your follow becomes a friend request that they need to accept.",
+        src: ["hallway", "privateProf"] },
+      { kind: "step", t: "Step 3. Check the host's Houses",
+        d: "On the host's profile, open the Houses listed, and find the one that hosts the room. If the House is not listed, search for it by name. Houses that hide their member list still show in Search.",
+        src: ["managing"] },
+      { kind: "step", t: "Step 4. Join the House",
+        d: "If the House is open, tap Join. If it needs approval, join the waitlist and answer the question. A member who is your friend can approve you. If it is invite only, ask the host or an Admin to invite you.",
+        src: ["managing"] },
+      { kind: "step", t: "Step 5. Open the House page",
+        d: "The House page shows live rooms, upcoming rooms you can RSVP to, and recent House chat. RSVP so you get a reminder.",
+        src: ["whatsnew"], when: "February 12, 2025 release" },
+      { kind: "step", t: "Step 6. Pin the House",
+        d: "Pin the House so it is quicker to reach. Only you can see the Houses you pin.",
+        src: ["houseSettings"] },
+      { kind: "step", t: "Step 7. Turn on notifications",
+        d: "Friends get a notification when a friend starts or joins a room, is speaking, or shares a room. Make sure your phone allows Clubhouse notifications. On iPhone: Settings, then Notifications, then Clubhouse. On Android: Settings, then Apps, then Clubhouse, then Notifications.",
+        src: ["notified"] },
+      { kind: "step", t: "Step 8. Use the globe in Search",
+        d: "In Search, tap the globe icon beside the search bar to see live rooms you can join. The Rooms tab in Search also shows whether each room is private or open to you.",
+        src: ["hallway", "search"] },
+      { kind: "step", t: "Step 9. Ask for the room link",
+        d: "Ask the host or a moderator to send you the room link. They can also ping you, or mention you in the room chat.",
+        src: ["liveRooms", "whatsnew"] },
+      { kind: "step", t: "Step 10. Listen in a web browser",
+        d: "If the app will not open the room, the room link can play in a web browser on your phone or computer. In a browser you can listen, but you cannot chat, react or speak. This works only if the host leaves web listening turned on.",
+        src: ["whatsnew"], when: "April 9 and May 29, 2026 releases" }
+    ]
+  },
+  {
+    id: "hosts", icon: "🎙️", color: "#A16207",
+    title: "Tips for Hosts",
+    sub: "Help people find your rooms",
+    intro: "If you host rooms, these steps help your regular listeners find them.",
+    items: [
+      { kind: "step", t: "Share the room link every time",
+        d: "Share the room link before and during every room. It is the most reliable way in.",
+        src: ["whatsnew"] },
+      { kind: "step", t: "Give every room a clear title",
+        d: "Clubhouse has tested requiring titles, so that rooms without a title do not show in the Hallway.",
+        src: ["whatsnew"], when: "February 3, 2026 release" },
+      { kind: "step", t: "Schedule rooms in advance",
+        d: "Schedule rooms ahead of time so listeners can RSVP and get a reminder.",
+        src: ["whatsnew"], when: "April 28, 2026 release" },
+      { kind: "warn", t: "Know what your House settings do",
+        d: "If your House hides its member list, it cannot host public rooms.",
+        src: ["managing"] },
+      { kind: "step", t: "Keep web listening on",
+        d: "Leave web listening on if you want people without the app to hear the room.",
+        src: ["whatsnew"], when: "May 29, 2026 release" },
+      { kind: "step", t: "Check your House waitlist",
+        d: "Check the waitlist often so new people are not left waiting.",
+        src: ["managing"] },
+      { kind: "step", t: "Use the Moderator Action History",
+        d: "Use it to see whether another moderator closed the room or changed its title.",
+        src: ["whatsnew"], when: "May 11, 2026 release" }
+    ]
+  }
+];
+
+const CHECKLIST = [
+  { g: "Basics", items: [
+    "The app is up to date",
+    "I closed the app fully and opened it again",
+    "I tried both Wi-Fi and mobile data",
+    "I signed out and back in",
+    "The room is live now, not just scheduled and not already ended"
+  ]},
+  { g: "My settings", items: [
+    "I checked the bottom of the Hallway for the hidden room notice",
+    "I looked at my Block List (Settings, then Block List)",
+    "I did not hide the room in my Hallway",
+    "A content filter (NSFW or teen settings) is not hiding the room",
+    "My phone allows Clubhouse notifications",
+    "There is no suspension message in my Activity Center"
+  ]},
+  { g: "The host and the room", items: [
+    "I follow the host, and the host follows me back",
+    "My friend request was accepted (if the host's profile is private)",
+    "I know the room type: Friends Only, Friends of Friends, House or Public",
+    "A moderator has not removed me from this room"
+  ]},
+  { g: "The House", items: [
+    "I found the House in Search, not only on the host's profile",
+    "I joined the House, or I am on its waitlist, or I was invited",
+    "I have not been removed or banned from the House",
+    "I checked the House page for live and upcoming rooms",
+    "I RSVP'd to upcoming rooms",
+    "I pinned the House"
+  ]},
+  { g: "Ways back in", items: [
+    "I used the globe in Search for live rooms",
+    "I asked the host or a moderator for the room link",
+    "I tried listening in a web browser",
+    "If I was suspended, I sent an appeal through the Clubhouse request form"
+  ]}
+];
+
+/* "What's happening?" chooser on the home screen */
+const PROBLEMS = [
+  { t: "I can't see a friend's or host's room", go: ["find", "why"] },
+  { t: "The room vanished while I was in it", go: ["mod", "why"] },
+  { t: "I think blocking is involved", go: ["block"] },
+  { t: "I can't find or join the House", go: ["house", "find"] },
+  { t: "I got a warning or suspension message", go: ["mod"] },
+  { t: "I host rooms and people can't find them", go: ["hosts"] }
+];
