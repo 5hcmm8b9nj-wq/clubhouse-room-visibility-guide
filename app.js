@@ -141,7 +141,7 @@
   let state = "idle"; // idle | playing | paused
   let fullRun = false, wake = null;
 
-  const clean = t => t.replace(/[⚡❓🛡️🚫🏠🔎🎙️]/g, "").trim();
+  const clean = t => t.replace(/[⚡❓🛡️🚫🏠🔎🎙️🔌]/g, "").replace(/\b(\d+)\.\s/g, "$1, ").trim();
   const split = t => (t.match(/[^.!?]+[.!?]*/g) || [t]).map(s => s.trim()).filter(Boolean);
 
   function sectionQueue(sid) {

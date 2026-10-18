@@ -59,6 +59,50 @@ const SECTIONS = [
     ]
   },
   {
+    id: "kicked", icon: "🔌", color: "#DB2777",
+    title: "Kicked Out of a Live Room",
+    sub: "Can't get back in? 12 things to try",
+    intro: "You were listening to a live room, got dropped, and can't get back in, even after restarting your phone and the app. Try these in order. This list assumes a moderator has not blocked you.",
+    items: [
+      { kind: "why", t: "1. Were you listening in a web browser?",
+        d: "Hosts and moderators can turn off web listening. When they do, everyone listening in a browser is removed from the room. If that happened, open the room in the Clubhouse app instead.",
+        src: ["whatsnew"], when: "May 29, 2026 release" },
+      { kind: "step", t: "2. Check that the room is still live",
+        d: "A moderator can end a room at any time. Open the host's profile or the House page to see if the room is still running. You can also tap Search, then the globe icon, to see live rooms you can join.",
+        src: ["modBlog", "whatsnew", "hallway"], when: "House page: February 12, 2025 release" },
+      { kind: "step", t: "3. Update the Clubhouse app",
+        d: "Room links may ask you to update the app before they open. Update Clubhouse from the App Store on iPhone or Google Play on Android.",
+        src: ["whatsnew"], when: "March 25, 2026 release" },
+      { kind: "step", t: "4. Get back in with the room link",
+        d: "Don't wait for the room to show in your Hallway. Ask someone who is still in the room to share the room link with you, then tap it. The same link works for the live room.",
+        src: ["whatsnew"], when: "March 25, 2026 release" },
+      { kind: "step", t: "5. Ask the host or a moderator to bring you back",
+        d: "Send the host or a moderator a message. They can ping you into the room, or mention you in the room chat.",
+        src: ["liveRooms"] },
+      { kind: "step", t: "6. Check your internet connection",
+        d: "Switch from Wi-Fi to mobile data, or from mobile data to Wi-Fi. You can also turn airplane mode on, wait ten seconds, and turn it off again. Then try the room link again.",
+        src: [] },
+      { kind: "step", t: "7. Look at the bottom of your Hallway",
+        d: "If someone you blocked is now speaking in the room, the room is hidden from you. Scroll to the bottom of your Hallway and tap the hidden room notice to show it.",
+        src: ["cr", "guidelines"] },
+      { kind: "step", t: "8. Sign out, then sign back in",
+        d: "In the app, go to your profile, then settings, and sign out. Sign back in and try the room link again.",
+        src: [] },
+      { kind: "step", t: "9. Delete and reinstall the app",
+        d: "Delete Clubhouse from your phone, then install it again from the App Store on iPhone or Google Play on Android. Sign in and try the room link again.",
+        src: [] },
+      { kind: "step", t: "10. Listen in a web browser",
+        d: "Open the room link in your phone's web browser, or on a computer. In a browser you can listen, but you can't chat, react or speak. This works only if the host has left web listening turned on.",
+        src: ["whatsnew"], when: "April 9 and May 29, 2026 releases" },
+      { kind: "step", t: "11. Check your Activity Center",
+        d: "If Clubhouse has suspended your account, the details, including how long it lasts, are in your Activity Center in the app.",
+        src: ["appeals"] },
+      { kind: "warn", t: "12. If nothing works, a moderator may have removed you",
+        d: "Being removed from a room is not the same as being blocked. A person who is removed from a room can no longer see that room or get back into it. You can still join the host's other rooms later. If you think something went wrong, contact Clubhouse through the request form. Include the room name, the time and what happened.",
+        src: ["guidelines", "request"] }
+    ]
+  },
+  {
     id: "why", icon: "❓", color: "#C2410C",
     title: "Why Rooms Disappear",
     sub: "10 common reasons",
@@ -286,6 +330,7 @@ const CHECKLIST = [
 
 /* "What's happening?" chooser on the home screen */
 const PROBLEMS = [
+  { t: "I got kicked out of a live room and can't get back in", go: ["kicked"] },
   { t: "I can't see a friend's or host's room", go: ["find", "why"] },
   { t: "The room vanished while I was in it", go: ["mod", "why"] },
   { t: "I think blocking is involved", go: ["block"] },
